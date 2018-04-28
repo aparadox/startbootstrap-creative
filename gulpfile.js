@@ -6,6 +6,7 @@ var rename = require("gulp-rename");
 var uglify = require('gulp-uglify');
 var pkg = require('./package.json');
 var browserSync = require('browser-sync').create();
+var sourcemaps = require('gulp-sourcemaps');
 
 // Set the banner content
 var banner = ['/*!\n',
@@ -15,6 +16,13 @@ var banner = ['/*!\n',
   ' */\n',
   ''
 ].join('');
+
+gulp.task('scss', function() {
+  gulp.src([
+      './scss/*'
+    ])
+    .pipe(gulp.dest('./scss'))
+});
 
 // Copy third party libraries from /node_modules into /vendor
 gulp.task('vendor', function() {
@@ -67,9 +75,11 @@ gulp.task('vendor', function() {
 // Compile SCSS
 gulp.task('css:compile', function() {
   return gulp.src('./scss/**/*.scss')
+    .pipe(sourcemaps.init())
     .pipe(sass.sync({
       outputStyle: 'expanded'
     }).on('error', sass.logError))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./css'))
 });
 
@@ -120,7 +130,7 @@ gulp.task('browserSync', function() {
 });
 
 // Dev task
-gulp.task('dev', ['css', 'js', 'browserSync'], function() {
+gulp.task('dev', ['css', 'js', 'scss', 'browserSync'], function() {
   gulp.watch('./scss/*.scss', ['css']);
   gulp.watch('./js/*.js', ['js']);
   gulp.watch('./*.html', browserSync.reload);

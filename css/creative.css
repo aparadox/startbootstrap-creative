@@ -90,10 +90,15 @@ img::-moz-selection {
 }
 
 #mainNav .navbar-brand {
+  width: 175px;
   font-weight: 700;
   text-transform: uppercase;
   color: #F05F40;
   font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
+#mainNav .navbar-brand > img {
+  width: 100%;
 }
 
 #mainNav .navbar-brand:focus, #mainNav .navbar-brand:hover {
@@ -223,6 +228,8 @@ header.masthead p {
   display: block;
   max-width: 650px;
   margin: 0 auto;
+  height: 400px;
+  overflow: hidden;
 }
 
 .portfolio-box .portfolio-box-caption {
@@ -310,3 +317,5 @@ header.masthead p {
 .btn-primary:active, .btn-primary:focus {
   box-shadow: 0 0 0 0.2rem rgba(240, 95, 64, 0.5) !important;
 }
+
+/*# sourceMappingURL=creative.css.map */

@@ -5,6 +5,10 @@
   @include sans-serif-font;
   @include transition-all;
   .navbar-brand {
+    width: 175px;
+    > img {
+      width: 100%; 
+    }
     font-weight: 700;
     text-transform: uppercase;
     color: $primary;
